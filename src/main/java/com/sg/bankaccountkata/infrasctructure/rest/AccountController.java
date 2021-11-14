@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.OffsetDateTime;
 
 @Slf4j
+@AllArgsConstructor
 @RestController
 @RequestMapping("/account")
-@AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountController {
 
     private OperationService operationService;
@@ -27,9 +28,9 @@ public class AccountController {
 
     @PostMapping("/{accountNumber}/operations")
     @ResponseStatus(value= HttpStatus.CREATED)
-    public void saveOperation(@RequestBody OperationDto operationDto,
+    public void saveOperation(@RequestBody OperationDto operationDetail,
                                   @PathVariable Long accountNumber) throws AccountNotFoundException {
-        this.operationService.saveOperation(toOperation(operationDto), accountNumber);
+        this.operationService.saveOperation(toOperation(operationDetail), accountNumber);
     }
 
     @GetMapping("/{accountNumber}/account-statement")
@@ -37,10 +38,10 @@ public class AccountController {
         return AccountStatementDto.from(accountStatementService.getOperationsHistory(accountNumber));
     }
 
-    private Operation toOperation(OperationDto operationDto) {
+    private Operation toOperation(OperationDto operationDetail) {
         return Operation.builder()
-                .amount(operationDto.getAmount())
-                .operationType(operationDto.getOperationType())
+                .amount(operationDetail.getAmount())
+                .operationType(operationDetail.getOperationType())
                 .date(OffsetDateTime.now())
                 .build();
     }

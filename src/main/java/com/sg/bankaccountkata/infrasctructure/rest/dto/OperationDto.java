@@ -2,6 +2,7 @@ package com.sg.bankaccountkata.infrasctructure.rest.dto;
 
 import com.sg.bankaccountkata.domaine.Operation;
 import com.sg.bankaccountkata.domaine.OperationType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Builder
+@AllArgsConstructor
 public class OperationDto {
 
     private Double amount;
@@ -22,6 +24,7 @@ public class OperationDto {
                 .map(OperationDto::from)
                 .collect(Collectors.toList());
     }
+
     public static OperationDto from(Operation operation) {
         return OperationDto.builder()
                 .amount(operation.getAmount())

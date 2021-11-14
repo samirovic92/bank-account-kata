@@ -23,7 +23,7 @@ public class Account {
         if(!operationIsAllowed(newBalance)) {
             throw new UnauthorizedOperationException(accountNumber, operation);
         }
-        operation.addAccountId(id);
+        operation.setAccountId(id);
         balance = newBalance;
         operations.add(operation);
     }

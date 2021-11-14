@@ -15,7 +15,7 @@ public class Operation {
     private OperationType operationType;
     private Long accountId;
 
-    public void addAccountId(Long accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 }
