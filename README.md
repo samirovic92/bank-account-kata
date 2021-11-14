@@ -8,6 +8,19 @@
 $ mvn clean test
 ```
 
+## Start Backend Server (Spring)
+```bash
+$ mvn spring-boot:run
+```
+
+## Start Front Server (Angular)
+```bash
+$ cd front
+$ ng serve
+
+Url :: http://localhost:4200/
+```
+
 ## API
 to make a deposit operation:
 ```bash
@@ -35,4 +48,3 @@ to see the history:
 ```bash
 GET  http://localhost:8080/account/2500/account-statement
 ```
- 
