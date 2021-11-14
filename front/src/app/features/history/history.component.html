@@ -1,0 +1,29 @@
+<div *ngIf="!!accountStatement">
+  <div><b>Client Id :</b> {{accountStatement.clientId}}</div>
+  <div><b>Account Number :</b> {{accountStatement.accountNumber}}</div>
+  <div><b>Balance :</b> {{accountStatement.balance}}</div>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Amount</th>
+    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="operationType">
+    <th mat-header-cell *matHeaderCellDef> Operation Type</th>
+    <td mat-cell *matCellDef="let element"> {{element.operationType}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date</th>
+    <td mat-cell *matCellDef="let element"> {{element.date | date : 'd/M/yy, h:mm a'}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+

@@ -1,0 +1,22 @@
+<form class="example-form">
+
+  <mat-form-field class="amount-input" appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input type="number" matInput [formControl]="amountFormControl" placeholder="Ex. 10000">
+  </mat-form-field>
+
+  <mat-form-field class="operationType" appearance="fill">
+    <mat-label>Operation Type</mat-label>
+    <mat-select [(value)]="selectedOperation">
+      <mat-option *ngFor="let operationType of operationTypes" [value]="operationType.value">
+        {{operationType.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary"
+          class="btn-operation"
+          (click)="saveOperation()"
+          [disabled]="amountFormControl.invalid"> Save </button>
+
+</form>
