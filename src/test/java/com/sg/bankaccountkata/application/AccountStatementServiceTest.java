@@ -35,10 +35,10 @@ class AccountStatementServiceTest {
         // Given
         final Long accountNumber = 2500l;
         final Long clientId = 1000l;
-        Operation operation = Operation.builder().operationType(OperationType.DEPOSIT)
-                .amount(100d)
-                .date(OffsetDateTime.now())
-                .build();
+        Operation operation = new Operation(
+                100d,
+                OperationType.DEPOSIT,
+                OffsetDateTime.now());
 
         Account account = Account.builder()
                 .id(1l)

@@ -39,6 +39,7 @@ class AccountControllerIntegrationTest {
     }
 
     @Test
+    @Sql(scripts = "/test/load-operation-data.sql")
     public void add_new_WITHDRAWAL_operation() throws Exception {
         final Long accountNumber = 2500l;
         OperationDto operationDto = buildDefaultOperation(OperationType.WITHDRAWAL);

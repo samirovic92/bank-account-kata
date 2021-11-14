@@ -39,11 +39,7 @@ public class AccountController {
     }
 
     private Operation toOperation(OperationDto operationDetail) {
-        return Operation.builder()
-                .amount(operationDetail.getAmount())
-                .operationType(operationDetail.getOperationType())
-                .date(OffsetDateTime.now())
-                .build();
+        return new Operation(operationDetail.getAmount(), operationDetail.getOperationType(), OffsetDateTime.now());
     }
 
     @ExceptionHandler(AccountNotFoundException.class)

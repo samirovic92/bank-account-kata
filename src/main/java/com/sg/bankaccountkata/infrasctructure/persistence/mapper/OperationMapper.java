@@ -32,12 +32,11 @@ public class OperationMapper {
     }
 
     public static Operation to(OperationEntity operation) {
-        return  Operation.builder()
-                .id(operation.getId())
-                .operationType(operation.getOperationType())
-                .amount(operation.getAmount())
-                .accountId(operation.getAccount().getId())
-                .date(operation.getDate())
-                .build();
+        return  new Operation(
+                operation.getId(),
+                operation.getAmount(),
+                operation.getOperationType(),
+                operation.getDate(),
+                operation.getAccount().getId());
     }
 }

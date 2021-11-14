@@ -41,11 +41,10 @@ class OperationServiceTest {
         // Given
         OffsetDateTime now = OffsetDateTime.now();
         Account account = buildDefaultAccount();
-        Operation operation = Operation.builder()
-                .operationType(OperationType.DEPOSIT)
-                .amount(100d)
-                .date(now)
-                .build();
+        Operation operation = new Operation(
+                100d,
+                OperationType.DEPOSIT,
+                now);
 
         when(accountRepository.findByAccountNumber(anyLong())).thenReturn(account);
 
@@ -66,12 +65,10 @@ class OperationServiceTest {
         // Given
         OffsetDateTime now = OffsetDateTime.now();
         Account account = buildDefaultAccount();
-        Operation operation = Operation.builder()
-                .operationType(OperationType.WITHDRAWAL)
-                .amount(100d)
-                .date(now)
-                .build();
-
+        Operation operation = new Operation(
+                100d,
+                OperationType.WITHDRAWAL,
+                now);
         when(accountRepository.findByAccountNumber(anyLong())).thenReturn(account);
 
         // When
@@ -91,11 +88,11 @@ class OperationServiceTest {
         // Given
         OffsetDateTime now = OffsetDateTime.now();
         Account account = buildDefaultAccount();
-        Operation operation = Operation.builder()
-                .operationType(OperationType.WITHDRAWAL)
-                .amount(300d)
-                .date(now)
-                .build();
+
+        Operation operation = new Operation(
+                300d,
+                OperationType.WITHDRAWAL,
+                now);
 
         when(accountRepository.findByAccountNumber(anyLong())).thenReturn(account);
 
