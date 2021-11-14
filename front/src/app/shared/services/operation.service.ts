@@ -15,11 +15,11 @@ export class OperationService {
   constructor(private http: HttpClient) {
   }
 
-  saveOperation = (amount: number, operationType: OperationType): void => {
+  saveOperation = (amount: number, operationType: OperationType): Observable<any> => {
     const accountNumber = 2500; // Just for test
     const url: string = `${this.baseURL}/${accountNumber}/operations`;
 
-    this.http.post(url, this.buildOperationDetail(amount, operationType)).subscribe();
+    return this.http.post(url, this.buildOperationDetail(amount, operationType));
   };
 
   private buildOperationDetail(amount: number, operationType: OperationType) {

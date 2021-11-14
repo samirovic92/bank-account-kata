@@ -57,6 +57,7 @@ public class AccountController {
 
     @ExceptionHandler(UnauthorizedOperationException.class)
     @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ApiError> handleUnauthorizedOperationException(final UnauthorizedOperationException ex) {
 
         return new ResponseEntity<>(

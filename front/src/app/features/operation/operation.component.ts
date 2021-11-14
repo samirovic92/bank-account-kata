@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {OperationType} from "../../shared/model/operation-type.enum";
 import {OperationService} from "../../shared/services/operation.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {SnackBarComponent} from "../../shared/component/snack-bar/snack-bar.component";
 
 @Component({
   selector: 'app-operation',
@@ -14,7 +16,9 @@ export class OperationComponent implements OnInit {
   selectedOperation;
   operationTypes;
 
-  constructor(private operationService: OperationService) {}
+  constructor(private operationService: OperationService,
+              private _snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     this.initData();
@@ -24,8 +28,8 @@ export class OperationComponent implements OnInit {
   private initData() {
     this.selectedOperation = OperationType.DEPOSIT;
     this.operationTypes = [
-      { value: OperationType.DEPOSIT, label: 'Deposit'},
-      { value: OperationType.WITHDRAWAL, label: 'withdrawal'}
+      {value: OperationType.DEPOSIT, label: 'Deposit'},
+      {value: OperationType.WITHDRAWAL, label: 'withdrawal'}
     ];
   }
 
@@ -35,6 +39,10 @@ export class OperationComponent implements OnInit {
 
   saveOperation() {
     const amount: number = this.amountFormControl.value;
-    this.operationService.saveOperation(amount, this.selectedOperation);
+    this.operationService.saveOperation(amount, this.selectedOperation)
+      .subscribe(() => { },
+        error => this._snackBar.openFromComponent(SnackBarComponent, {data: error.error.message, duration: 2000})
+      )
   }
+
 }

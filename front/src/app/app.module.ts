@@ -8,17 +8,20 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {OperationComponent} from './features/operation/operation.component';
 import {HistoryComponent} from './features/history/history.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from '@angular/material/input';
 import {HttpClientModule} from "@angular/common/http";
+import { SnackBarComponent } from './shared/component/snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OperationComponent,
     HistoryComponent,
+    SnackBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     MatSelectModule,
     MatTableModule,
+    MatSnackBarModule,
 
     AppRoutingModule
   ],
